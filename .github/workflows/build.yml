@@ -16,8 +16,13 @@ jobs:
     steps:
       - uses: actions/setup-java@v5
         with:
-          distribution: "zulu"
+          distribution: "temurin"
           java-version: "21"
+
+      - name: Fix Java for env -i
+        run: |
+          sudo ln -sf "$JAVA_HOME/bin/java" /usr/bin/java
+          java -version
 
       - name: Checkout
         uses: actions/checkout@v6
